@@ -16,11 +16,6 @@ const DefaultFileMenu = React.createClass({
         electron: React.PropTypes.object.isRequired
     },
 
-    onOpenDevTools() {
-        const { electron } = this.context;
-        electron.remote.getCurrentWindow().toggleDevTools();
-    },
-
     onHide() {
         const { electron } = this.context;
         electron.remote.getCurrentWindow().hide();
@@ -35,17 +30,13 @@ const DefaultFileMenu = React.createClass({
         return (
             <MenuItem id="file" label={appName}>
                 <MenuItem
-                    label={`About ${appName}`}
+                    label={ os.platform() == 'linux' ? 'About' : `About ${app.getName()}` }
                     selector="orderFrontStandardAboutPanel"
                     onClick={onAbout}
                     role="about"
                     />
                 {children}
-                <MenuItem
-                    label="Toggle DevTools"
-                    accelerator="Alt+CmdOrCtrl+I"
-                    onClick={this.onOpenDevTools}
-                    />
+                <MenuItem role="toggledevtools" />
                 {isMac ? <MenuItem.Separator /> : null}
                 {isMac ? <MenuItem label="Services" submenu={[]} /> : null}
                 {isMac ? <MenuItem
@@ -63,11 +54,7 @@ const DefaultFileMenu = React.createClass({
                     selector="unhideAllApplications"
                     /> : null}
                 {isMac ? <MenuItem.Separator /> : null}
-                <MenuItem
-                    label="Quit"
-                    accelerator="CmdOrCtrl+Q"
-                    role="quit"
-                    />
+                <MenuItem role="quit" />
             </MenuItem>
         );
     }
