@@ -25,6 +25,7 @@ const DefaultEditMenu = React.createClass({
                 <MenuItem role="cut" />
                 <MenuItem role="copy" />
                 <MenuItem role="paste" />
+                <MenuItem role="pasteandmatchstyle" />
                 <MenuItem role="delete" />
                 <MenuItem role="selectall" />
                 {children}
