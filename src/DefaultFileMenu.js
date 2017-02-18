@@ -30,7 +30,7 @@ const DefaultFileMenu = React.createClass({
         return (
             <MenuItem id="file" label={appName}>
                 <MenuItem
-                    label={ os.platform() == 'linux' ? 'About' : `About ${app.getName()}` }
+                    label={`About ${appName}`}
                     selector="orderFrontStandardAboutPanel"
                     onClick={onAbout}
                     role="about"
